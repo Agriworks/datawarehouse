@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Paperclip, Search, Upload } from "lucide-react";
+import { Search, Upload } from "lucide-react";
 
 export default function Create() {
   return (
