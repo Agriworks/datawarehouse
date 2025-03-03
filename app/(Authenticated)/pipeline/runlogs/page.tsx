@@ -4,12 +4,12 @@ import { Search } from "lucide-react";
 
 export default function RunLogs() {
   return (
-    <main className="container px-4 py-6 md:px-6 md:py-8">
-      <div className="relative mb-8">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+    <main className="h-full flex flex-col space-y-4 p-4">
+      <div className="relative p-4 shrink-0">
+        <Search className="absolute left-7 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           type="search"
-          placeholder="Search...."
+          placeholder="Search dataset"
           className="pl-10 w-full"
         />
       </div>
