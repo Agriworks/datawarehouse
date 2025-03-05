@@ -8,11 +8,7 @@ on:
 
 jobs:
   code-quality:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: ['20']
+    runs-on: windows-latest
 
     steps:
       - name: Checkout code
