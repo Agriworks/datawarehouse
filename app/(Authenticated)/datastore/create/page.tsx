@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -10,8 +11,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Search, Upload } from "lucide-react";
-
+import { DatasetConfigurationDialog } from "./dataset-cofig-dialogue";
+import { useState } from "react";
+import { FormData } from "./dataset-cofig-dialogue";
 export default function Create() {
+  const [open, setOpen] = useState(false);
+
+  const handleComplete = (data: FormData) => {
+    console.log("Configuration complete:", data);
+  };
   return (
     <div className="h-full flex flex-col space-y-4 p-4">
       <div className="relative p-4 shrink-0">
@@ -84,10 +92,15 @@ export default function Create() {
               Acceptable file formats include: CSV
             </p>
             <Input id="picture" type="file" />
-            <Button>
+            <Button onClick={() => setOpen(true)}>
               <Upload className="mr-2 h-4 w-4" />
               Configure Dataset
             </Button>
+            <DatasetConfigurationDialog
+              open={open}
+              onOpenChange={setOpen}
+              onComplete={handleComplete}
+            />
           </CardContent>
         </Card>
       </div>
