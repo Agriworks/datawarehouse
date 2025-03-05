@@ -1,0 +1,105 @@
+name: Code Quality Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  code-quality:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: ['20']
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check export patterns
+        run: |
+          npx ts-node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const components = process.argv[1];
+            const files = fs.readdirSync(components);
+            files.forEach(file => {
+              if (file.endsWith('.tsx')) {
+                const content = fs.readFileSync(path.join(components, file), 'utf8');
+                if (!content.includes('export function')) {
+                  throw new Error(`${file} does not use export function pattern`);
+                }
+              }
+            });
+          " -- components/
+
+      - name: Run ESLint
+        run: npx eslint . --ext .ts,.tsx
+
+      - name: Run Prettier check
+        run: npx prettier --check .
+
+      - name: Check naming conventions
+        run: |
+          npx ts-node -e "
+            const fs = require('fs');
+            const path = require('path');
+            function isCamelCase(str) {
+              return /^[a-z][a-zA-Z0-9]*$/.test(str);
+            }
+            // Add your camelCase checking logic here
+          "
+
+      - name: Check Storybook stories existence
+        run: |
+          npx ts-node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const components = './components';
+            const stories = './stories';
+            
+            fs.readdirSync(components).forEach(file => {
+              if (file.endsWith('.tsx')) {
+                const storyFile = path.join(stories, file.replace('.tsx', '.stories.tsx'));
+                if (!fs.existsSync(storyFile)) {
+                  throw new Error(`Story file missing for ${file}`);
+                }
+              }
+            });
+          "
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Run Storybook tests
+        run: |
+          npm run test-storybook
+        if: always()
+
+      - name: Check story descriptions
+        run: |
+          npx ts-node -e "
+            const fs = require('fs');
+            const path = require('path');
+            const stories = './stories';
+            
+            fs.readdirSync(stories).forEach(file => {
+              if (file.endsWith('.stories.tsx')) {
+                const content = fs.readFileSync(path.join(stories, file), 'utf8');
+                if (!content.includes('description:')) {
+                  throw new Error(`${file} missing story description`);
+                }
+              }
+            });
+          "
