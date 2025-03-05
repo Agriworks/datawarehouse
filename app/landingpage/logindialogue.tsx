@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -7,17 +7,17 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { useRouter } from 'next/navigation'
 
 export function LoginDialog() {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleLogin = () => {
-    router.push("/datastore/browse");
-  };
+    router.push('/datastore/browse')
+  }
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -42,5 +42,5 @@ export function LoginDialog() {
         <DialogFooter></DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

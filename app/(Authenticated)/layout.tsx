@@ -1,35 +1,35 @@
-"use client";
-import { AppSidebar } from "@/components/app-sidebar";
-import { ThemeToggle } from "@/components/theme-toggle";
+'use client'
+import { AppSidebar } from '@/components/app-sidebar'
+import { ThemeToggle } from '@/components/theme-toggle'
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+} from '@/components/ui/breadcrumb'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { User } from "lucide-react";
-import { usePathname } from "next/navigation";
-import { Fragment } from "react";
+} from '@/components/ui/sidebar'
+import { User } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { Fragment } from 'react'
 
 export default function DashboardLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
-  const pathname = usePathname();
+  const pathname = usePathname()
   const getBreadcrumbs = () => {
-    const paths = pathname.split("/").filter(Boolean);
+    const paths = pathname.split('/').filter(Boolean)
     return paths.map((path, index) => {
       // Capitalize and format path
-      const title = path.charAt(0).toUpperCase() + path.slice(1);
+      const title = path.charAt(0).toUpperCase() + path.slice(1)
       return (
         <Fragment key={path}>
           {index > 0 && <BreadcrumbSeparator className="hidden md:block" />}
@@ -37,9 +37,9 @@ export default function DashboardLayout({
             <BreadcrumbPage>{title}</BreadcrumbPage>
           </BreadcrumbItem>
         </Fragment>
-      );
-    });
-  };
+      )
+    })
+  }
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -65,5 +65,5 @@ export default function DashboardLayout({
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-"use client";
-import { FeatureCard } from "@/components/feature-card";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
-import { LoginDialog } from "./logindialogue";
+'use client'
+import { FeatureCard } from '@/components/feature-card'
+import { ThemeToggle } from '@/components/theme-toggle'
+import { Button } from '@/components/ui/button'
+import { User } from 'lucide-react'
+import { LoginDialog } from './logindialogue'
 
 export default function LandingPage() {
   return (
@@ -62,5 +62,5 @@ export default function LandingPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }

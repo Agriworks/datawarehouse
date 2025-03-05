@@ -1,14 +1,14 @@
-"use client";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Play, ChevronDown, ChevronUp } from "lucide-react";
+'use client'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Play, ChevronDown, ChevronUp } from 'lucide-react'
 
 interface PipelineItemProps {
-  number: number;
+  number: number
 }
 
 export function PipelineItem({ number }: PipelineItemProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
 
   return (
     <div className="border rounded-lg overflow-hidden">
@@ -45,5 +45,5 @@ export function PipelineItem({ number }: PipelineItemProps) {
         <div className="p-4 pt-0 border-t mt-2">This is the pipeline</div>
       )}
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
-import { DatasetCard } from "./datasetcard";
+import { Input } from '@/components/ui/input'
+import { Search } from 'lucide-react'
+import { DatasetCard } from './datasetcard'
 
 export default function Browse() {
   return (
@@ -34,5 +34,5 @@ export default function Browse() {
         </div>
       </div>
     </div>
-  );
+  )
 }

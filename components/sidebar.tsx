@@ -1,29 +1,29 @@
-import Link from "next/link";
-import { LayoutDashboard, Users, Settings, HelpCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link'
+import { LayoutDashboard, Users, Settings, HelpCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const sidebarItems = [
   {
-    title: "CSA Datastore",
+    title: 'CSA Datastore',
     icon: LayoutDashboard,
-    href: "/",
+    href: '/',
   },
   {
-    title: "About Us",
+    title: 'About Us',
     icon: Users,
-    href: "/about",
+    href: '/about',
   },
   {
-    title: "Settings",
+    title: 'Settings',
     icon: Settings,
-    href: "/settings",
+    href: '/settings',
   },
   {
-    title: "Support",
+    title: 'Support',
     icon: HelpCircle,
-    href: "/support",
+    href: '/support',
   },
-];
+]
 
 export function Sidebar() {
   return (
@@ -35,7 +35,7 @@ export function Sidebar() {
             {sidebarItems.map((item) => (
               <Link key={item.href} href={item.href}>
                 <Button
-                  variant={item.href === "/" ? "secondary" : "ghost"}
+                  variant={item.href === '/' ? 'secondary' : 'ghost'}
                   className="w-full justify-start"
                 >
                   <item.icon className="mr-2 h-4 w-4" />
@@ -47,5 +47,5 @@ export function Sidebar() {
         </div>
       </div>
     </div>
-  );
+  )
 }

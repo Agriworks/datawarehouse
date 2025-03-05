@@ -1,49 +1,49 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import { Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import React, { useState } from 'react'
+import { Check } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { cn } from "@/lib/utils";
-import { Checkbox } from "@/components/ui/checkbox";
+} from '@/components/ui/select'
+import { cn } from '@/lib/utils'
+import { Checkbox } from '@/components/ui/checkbox'
 
 export interface FormData {
-  time: string;
-  location: string;
-  latitude: string;
-  longitude: string;
-  mag: string;
+  time: string
+  location: string
+  latitude: string
+  longitude: string
+  mag: string
 }
 
 interface DatasetConfigurationDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onComplete: (data: FormData) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onComplete: (data: FormData) => void
 }
 
 interface Step {
-  id: number;
-  title: string;
-  completed: boolean;
-  current: boolean;
+  id: number
+  title: string
+  completed: boolean
+  current: boolean
 }
 
 interface DatasetConfigurationDialogProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onComplete: (data: FormData) => void;
+  open: boolean
+  onOpenChange: (open: boolean) => void
+  onComplete: (data: FormData) => void
 }
 
 export function DatasetConfigurationDialog({
@@ -51,54 +51,54 @@ export function DatasetConfigurationDialog({
   onOpenChange,
   onComplete,
 }: DatasetConfigurationDialogProps) {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(1)
   const [formData, setFormData] = useState<FormData>({
-    time: "",
-    location: "",
-    latitude: "",
-    longitude: "",
-    mag: "",
-  });
+    time: '',
+    location: '',
+    latitude: '',
+    longitude: '',
+    mag: '',
+  })
 
   const steps: Step[] = [
     {
       id: 1,
-      title: "Time/Location Data Checking",
+      title: 'Time/Location Data Checking',
       completed: currentStep > 1,
       current: currentStep === 1,
     },
     {
       id: 2,
-      title: "Select Data Column",
+      title: 'Select Data Column',
       completed: currentStep > 2,
       current: currentStep === 2,
     },
     {
       id: 3,
-      title: "Select Granularity",
+      title: 'Select Granularity',
       completed: currentStep > 3,
       current: currentStep === 3,
     },
-  ];
+  ]
 
   const handleChange = (field: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
+    setFormData((prev) => ({ ...prev, [field]: value }))
+  }
 
   const handleNext = () => {
     if (currentStep < steps.length) {
-      setCurrentStep(currentStep + 1);
+      setCurrentStep(currentStep + 1)
     } else {
-      onComplete(formData);
-      onOpenChange(false);
+      onComplete(formData)
+      onOpenChange(false)
     }
-  };
+  }
 
   const handleBack = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      setCurrentStep(currentStep - 1)
     }
-  };
+  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -116,12 +116,12 @@ export function DatasetConfigurationDialog({
                 <div className="flex items-center">
                   <div
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full border",
+                      'flex h-8 w-8 items-center justify-center rounded-full border',
                       step.completed
-                        ? "bg-primary text-primary-foreground"
+                        ? 'bg-primary text-primary-foreground'
                         : step.current
-                        ? "border-primary"
-                        : "bg-muted"
+                          ? 'border-primary'
+                          : 'bg-muted'
                     )}
                   >
                     {step.completed ? (
@@ -167,7 +167,7 @@ export function DatasetConfigurationDialog({
                 <div className="space-y-4">
                   <Select
                     value={formData.time}
-                    onValueChange={(value) => handleChange("time", value)}
+                    onValueChange={(value) => handleChange('time', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Time" />
@@ -180,7 +180,7 @@ export function DatasetConfigurationDialog({
                   </Select>
                   <Select
                     value={formData.location}
-                    onValueChange={(value) => handleChange("location", value)}
+                    onValueChange={(value) => handleChange('location', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Location" />
@@ -193,7 +193,7 @@ export function DatasetConfigurationDialog({
                   </Select>
                   <Select
                     value={formData.latitude}
-                    onValueChange={(value) => handleChange("latitude", value)}
+                    onValueChange={(value) => handleChange('latitude', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Latitude" />
@@ -205,7 +205,7 @@ export function DatasetConfigurationDialog({
                   </Select>
                   <Select
                     value={formData.longitude}
-                    onValueChange={(value) => handleChange("longitude", value)}
+                    onValueChange={(value) => handleChange('longitude', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Longitude" />
@@ -217,7 +217,7 @@ export function DatasetConfigurationDialog({
                   </Select>
                   <Select
                     value={formData.mag}
-                    onValueChange={(value) => handleChange("mag", value)}
+                    onValueChange={(value) => handleChange('mag', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Mag" />
@@ -236,7 +236,7 @@ export function DatasetConfigurationDialog({
                 <div className="space-y-4">
                   <Select
                     value={formData.time}
-                    onValueChange={(value) => handleChange("time", value)}
+                    onValueChange={(value) => handleChange('time', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Time" />
@@ -249,7 +249,7 @@ export function DatasetConfigurationDialog({
                   </Select>
                   <Select
                     value={formData.location}
-                    onValueChange={(value) => handleChange("location", value)}
+                    onValueChange={(value) => handleChange('location', value)}
                   >
                     <SelectTrigger>
                       <SelectValue placeholder="Coordinate" />
@@ -275,8 +275,8 @@ export function DatasetConfigurationDialog({
               <div className="flex items-center gap-2">
                 <Button onClick={handleNext} className="min-w-[100px]">
                   {currentStep === steps.length
-                    ? "Save and Upload"
-                    : "Continue"}
+                    ? 'Save and Upload'
+                    : 'Continue'}
                 </Button>
               </div>
             </div>
@@ -284,5 +284,5 @@ export function DatasetConfigurationDialog({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }

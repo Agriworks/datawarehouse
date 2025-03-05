@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
-import { PipelineItem } from "./pipe-item";
-import { Search } from "lucide-react";
+import { Input } from '@/components/ui/input'
+import { PipelineItem } from './pipe-item'
+import { Search } from 'lucide-react'
 
 export default function RunLogs() {
   return (
@@ -23,5 +23,5 @@ export default function RunLogs() {
         <PipelineItem number={4} />
       </div>
     </main>
-  );
+  )
 }
