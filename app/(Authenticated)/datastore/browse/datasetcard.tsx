@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
-import Image from "next/image";
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardTitle } from '@/components/ui/card'
+import Image from 'next/image'
 
 export function DatasetCard({
   title,
   imageSrc,
 }: {
-  title: string;
-  imageSrc: string;
+  title: string
+  imageSrc: string
 }) {
   return (
     <Card className="overflow-hidden">
@@ -17,6 +17,8 @@ export function DatasetCard({
             <Image
               src={imageSrc}
               alt="Image"
+              width={300}
+              height={200}
               className="h-full w-full object-cover bg-muted"
             />
           </div>
@@ -36,5 +38,5 @@ export function DatasetCard({
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }
