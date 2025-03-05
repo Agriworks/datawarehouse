@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import Image from "next/image";
 
 export function DatasetCard({
   title,
@@ -13,8 +14,9 @@ export function DatasetCard({
       <CardContent className="p-0">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:w-1/3">
-            <img
+            <Image
               src={imageSrc}
+              alt="Image"
               className="h-full w-full object-cover bg-muted"
             />
           </div>
