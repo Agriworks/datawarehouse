@@ -43,8 +43,11 @@ jobs:
       - name: Run ESLint
         run: npx eslint . --ext .ts,.tsx
 
-      - name: Run Prettier check
-        run: npx prettier --check .
+      - name: Run Prettier
+        run: npm run format
+
+      - name: Check formatting
+        run: npm run format:check
 
       - name: Check naming conventions
         run: |
