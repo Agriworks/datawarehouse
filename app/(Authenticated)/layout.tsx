@@ -18,6 +18,7 @@ import {
 import { User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
+import { signOut } from 'next-auth/react'
 
 export default function DashboardLayout({
   children,
@@ -25,6 +26,12 @@ export default function DashboardLayout({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const handleLogout = async () => {
+    await signOut({
+      callbackUrl: '/landingpage',
+      redirect: true,
+    })
+  }
   const getBreadcrumbs = () => {
     const paths = pathname.split('/').filter(Boolean)
     return paths.map((path, index) => {
@@ -59,7 +66,7 @@ export default function DashboardLayout({
             <Button variant="ghost" size="icon">
               <User className="h-5 w-5" />
             </Button>
-            <Button>Logout</Button>
+            <Button onClick={handleLogout}>Logout</Button>
           </div>
         </header>
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
