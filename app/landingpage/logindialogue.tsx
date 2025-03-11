@@ -11,12 +11,24 @@ import {
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from 'next/navigation'
+import { signIn } from 'next-auth/react'
 
 export function LoginDialog() {
   const router = useRouter()
 
   const handleLogin = () => {
     router.push('/datastore/browse')
+  }
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signIn('google', {
+        callbackUrl: '/datastore/browse',
+        redirect: true,
+      })
+    } catch (error) {
+      console.error('Sign in error:', error)
+    }
   }
   return (
     <Dialog>
@@ -38,6 +50,7 @@ export function LoginDialog() {
             <Input type="password" id="email" placeholder="Password" />
           </div>
           <Button onClick={handleLogin}>Login</Button>
+          <Button onClick={handleGoogleSignIn}>SignIn with Google</Button>
         </DialogHeader>
         <DialogFooter></DialogFooter>
       </DialogContent>
