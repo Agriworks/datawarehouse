@@ -4,25 +4,24 @@ import type { NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
   const token = await getToken({ req: request })
-  const isAuthenticated = !!token
+
+  // Check if user has required role
+  const hasValidRole = token?.role !== null
   const isAuthPage = request.nextUrl.pathname === '/landingpage'
   const isApiAuthRoute = request.nextUrl.pathname.startsWith('/api/auth')
 
-  // Allow auth-related API routes
   if (isApiAuthRoute) {
     return NextResponse.next()
   }
 
-  // Redirect authenticated users away from auth pages
   if (isAuthPage) {
-    if (isAuthenticated) {
+    if (token && hasValidRole) {
       return NextResponse.redirect(new URL('/datastore/browse', request.url))
     }
     return NextResponse.next()
   }
 
-  // Protect all other routes
-  if (!isAuthenticated) {
+  if (!token || !hasValidRole) {
     return NextResponse.redirect(new URL('/landingpage', request.url))
   }
 
