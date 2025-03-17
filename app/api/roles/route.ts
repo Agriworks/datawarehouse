@@ -1,22 +1,21 @@
-import { NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
+import { NextRequest, NextResponse } from 'next/server'
 
-export default async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json()
-    console.log('Received email:', email)
-
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 })
     }
 
     const client = await clientPromise
     const db = client.db('datawarehouse')
-    const user = await db.collection('accounts').findOne({ email })
+    const user = await db.collection('accounts').findOne({ Email: email })
+    console.log(user)
 
     return NextResponse.json({
       email,
-      role: user?.role || 'user',
+      role: user?.CSA_Role,
       exists: !!user,
     })
   } catch (error) {
