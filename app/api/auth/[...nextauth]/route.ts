@@ -1,8 +1,9 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import type { NextAuthOptions } from 'next-auth'
+import clientPromise from '@/lib/mongodb'
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -15,8 +16,23 @@ const authOptions: NextAuthOptions = {
     error: '/landingpage',
   },
   callbacks: {
-    async redirect({ url, baseUrl }) {
-      return url.startsWith(baseUrl) ? url : baseUrl + '/datastore/browse'
+    async jwt({ token, account, user }) {
+      if (account && user?.email) {
+        // Add this check
+        try {
+          const client = await clientPromise
+          const db = client.db('datawarehouse')
+          const dbUser = await db.collection('accounts').findOne({
+            email: user.email,
+          })
+          token.role = dbUser?.role
+          console.log('Found role from MongoDB:', token.role)
+        } catch (error) {
+          console.error('MongoDB connection error:', error)
+          token.role = 'user' // fallback role
+        }
+      }
+      return token
     },
     async session({ session, token }) {
       return {
@@ -24,14 +40,9 @@ const authOptions: NextAuthOptions = {
         user: {
           ...session.user,
           id: token.sub,
+          role: token.role,
         },
       }
-    },
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token
-      }
-      return token
     },
   },
 }
