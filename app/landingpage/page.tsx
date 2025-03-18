@@ -1,8 +1,6 @@
 'use client'
 import { FeatureCard } from '@/components/feature-card'
 import { ThemeToggle } from '@/components/theme-toggle'
-import { Button } from '@/components/ui/button'
-import { User } from 'lucide-react'
 import { LoginDialog } from './logindialogue'
 
 export default function LandingPage() {
@@ -13,9 +11,6 @@ export default function LandingPage() {
           <h1 className="text-xl font-semibold px-4">CSA Datastore</h1>
           <div className="flex h-16 items-center px-4 justify-end space-x-4">
             <ThemeToggle />
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
             <LoginDialog />
           </div>
         </div>
