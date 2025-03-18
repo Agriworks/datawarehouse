@@ -1,6 +1,7 @@
 'use client'
 import { AppSidebar } from '@/components/app-sidebar'
 import { ThemeToggle } from '@/components/theme-toggle'
+import { useSession } from 'next-auth/react'
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,7 +16,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { User } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { Fragment } from 'react'
 import { signOut } from 'next-auth/react'
@@ -25,6 +25,7 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { data: session } = useSession()
   const pathname = usePathname()
   const handleLogout = async () => {
     await signOut({
@@ -63,8 +64,8 @@ export default function DashboardLayout({
           </div>
           <div className="flex h-16 items-center px-4 space-x-4">
             <ThemeToggle />
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
+            <Button variant="ghost">
+              {session?.user?.role || 'Loading...'}
             </Button>
             <Button onClick={handleLogout}>Logout</Button>
           </div>
