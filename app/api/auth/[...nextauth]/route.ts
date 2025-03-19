@@ -1,7 +1,15 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import type { NextAuthOptions } from 'next-auth'
+import type { NextAuthOptions, DefaultSession } from 'next-auth'
 import clientPromise from '@/lib/mongodb'
+
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      role?: string | null
+    } & DefaultSession['user']
+  }
+}
 
 const options: NextAuthOptions = {
   providers: [
