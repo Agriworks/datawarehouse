@@ -7,6 +7,7 @@ declare module 'next-auth' {
   interface Session {
     user: {
       role?: string | null
+      accessToken?: string | null
     } & DefaultSession['user']
   }
 }
@@ -16,6 +17,13 @@ const options: NextAuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          prompt: 'select_account',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
     }),
   ],
   callbacks: {
@@ -41,7 +49,7 @@ const options: NextAuthOptions = {
             Email: user.email,
           })
           token.role = dbUser?.CSA_Role
-          console.log('Role assigned:', token.role)
+          token.accessToken = account.access_token
         } catch (error) {
           console.error('JWT error:', error)
         }
@@ -54,6 +62,7 @@ const options: NextAuthOptions = {
         user: {
           ...session.user,
           role: token.role,
+          accessToken: token.accessToken,
         },
       }
     },
@@ -63,6 +72,10 @@ const options: NextAuthOptions = {
     error: '/auth/error',
   },
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: 'jwt',
+    maxAge: 24 * 60 * 60,
+  },
 }
 
 const handler = NextAuth(options)
