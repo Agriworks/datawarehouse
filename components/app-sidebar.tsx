@@ -134,7 +134,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <h1 className="text-xl font-semibold text-center">CSA Datastore</h1>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="font-medium">
         <NavMain items={filteredNavItems} />
       </SidebarContent>
       <SidebarFooter>

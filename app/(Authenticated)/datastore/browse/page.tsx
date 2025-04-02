@@ -2,45 +2,27 @@
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
 import { DatasetCard } from './datasetcard'
-import { datasetsIndex } from '@/lib/meilisearch'
-import { useState, useEffect } from 'react'
-import { useDebounce } from '@/hooks/use-debounce'
 
-interface Dataset {
-  id: string
-  title: string
-  imageSrc: string
-  // Add other fields you have in your dataset
-}
+const sampleData = [
+  {
+    title: 'Agricultural Land Use Data 2023',
+    imageSrc: '/images/agriculture.jpg',
+  },
+  {
+    title: 'Climate Change Impact Study',
+    imageSrc: '/images/climate.jpg',
+  },
+  {
+    title: 'Urban Development Patterns',
+    imageSrc: '/images/urban.jpg',
+  },
+  {
+    title: 'Rainfall Distribution Analysis',
+    imageSrc: '/images/rainfall.jpg',
+  },
+]
 
 export default function Browse() {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [datasets, setDatasets] = useState<Dataset[]>([])
-  const [loading, setLoading] = useState(false)
-  const debouncedSearch = useDebounce(searchQuery, 500)
-
-  useEffect(() => {
-    async function performSearch() {
-      setLoading(true)
-      try {
-        if (debouncedSearch) {
-          const results = await datasetsIndex.search(debouncedSearch)
-          setDatasets(results.hits as Dataset[])
-        } else {
-          // Get all documents when no search query
-          const results = await datasetsIndex.getDocuments()
-          setDatasets(results.results as Dataset[])
-        }
-      } catch (error) {
-        console.error('Search error:', error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    performSearch()
-  }, [debouncedSearch])
-
   return (
     <div className="h-full flex flex-col space-y-4 p-4">
       <div className="relative p-4 shrink-0">
@@ -49,24 +31,18 @@ export default function Browse() {
           type="search"
           placeholder="Search dataset"
           className="pl-10 w-full"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div className="flex-1 overflow-auto px-4">
-        {loading ? (
-          <div className="flex justify-center">Loading...</div>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-            {datasets.map((dataset) => (
-              <DatasetCard
-                key={dataset.id}
-                title={dataset.title}
-                imageSrc={dataset.imageSrc}
-              />
-            ))}
-          </div>
-        )}
+        <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+          {sampleData.map((dataset, index) => (
+            <DatasetCard
+              key={index}
+              title={dataset.title}
+              imageSrc={dataset.imageSrc}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
