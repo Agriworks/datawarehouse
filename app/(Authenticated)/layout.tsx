@@ -42,7 +42,7 @@ export default function DashboardLayout({
         <Fragment key={path}>
           {index > 0 && <BreadcrumbSeparator className="hidden md:block" />}
           <BreadcrumbItem className="hidden md:block">
-            <BreadcrumbPage>{title}</BreadcrumbPage>
+            <BreadcrumbPage className="font-semibold">{title}</BreadcrumbPage>
           </BreadcrumbItem>
         </Fragment>
       )
@@ -58,7 +58,9 @@ export default function DashboardLayout({
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
-                <BreadcrumbList>{getBreadcrumbs()}</BreadcrumbList>
+                <BreadcrumbList className="font-medium">
+                  {getBreadcrumbs()}
+                </BreadcrumbList>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
