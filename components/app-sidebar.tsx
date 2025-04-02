@@ -51,6 +51,12 @@ const data = {
   ],
   navMain: [
     {
+      title: 'Dashboard',
+      url: '/dashboard',
+      icon: SquareTerminal,
+      isActive: true,
+    },
+    {
       title: 'CSA Datastore',
       url: '#',
       icon: SquareTerminal,
@@ -84,6 +90,11 @@ const data = {
           url: '/pipeline/logstatistics',
         },
       ],
+    },
+    {
+      title: 'User Management',
+      url: '/usermanagement',
+      icon: BookOpen,
     },
     {
       title: 'About Us',
