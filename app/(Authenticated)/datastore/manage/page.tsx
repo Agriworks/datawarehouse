@@ -4,35 +4,10 @@ import { Input } from '@/components/ui/input'
 import { Search, Download, BarChart2, Loader2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts'
-import {
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from '@/components/ui/chart'
 import { EarthquakeData } from '@/lib/types'
-
-const chartConfig = {
-  magnitude: {
-    label: 'Magnitude',
-    color: 'hsl(var(--chart-1))',
-  },
-}
+import { TableView } from './table-view'
+import { GraphView } from './graph-view'
+import { MapView } from './map-view'
 
 export default function Manage() {
   const [earthquakeData, setEarthquakeData] = useState<EarthquakeData[]>([])
@@ -44,14 +19,10 @@ export default function Manage() {
     async function fetchEarthquakeData() {
       try {
         const response = await fetch('/api/earthquakes')
-        if (!response.ok) {
-          throw new Error('Failed to fetch earthquake data')
-        }
+        if (!response.ok) throw new Error('Failed to fetch earthquake data')
         const data = await response.json()
-        console.log('Fetched data:', data)
         setEarthquakeData(data)
       } catch (err) {
-        console.error('Error:', err)
         setError(err instanceof Error ? err.message : 'An error occurred')
       } finally {
         setLoading(false)
@@ -104,100 +75,13 @@ export default function Manage() {
             <TabsTrigger value="map">Map View</TabsTrigger>
           </TabsList>
           <TabsContent value="table">
-            <div className="rounded-md border">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Location</TableHead>
-                    <TableHead>Magnitude</TableHead>
-                    <TableHead>Time</TableHead>
-                    <TableHead>Latitude</TableHead>
-                    <TableHead>Longitude</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {filteredData.map((quake) => (
-                    <TableRow key={quake._id}>
-                      <TableCell>{quake.Place}</TableCell>
-                      <TableCell>{quake.Mag.toFixed(1)}</TableCell>
-                      <TableCell>
-                        {new Date(quake.Time).toLocaleString()}
-                      </TableCell>
-                      <TableCell>{quake.Latitude.toFixed(4)}</TableCell>
-                      <TableCell>{quake.Longitude.toFixed(4)}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
+            <TableView data={filteredData} />
           </TabsContent>
           <TabsContent value="graph">
-            <Card>
-              <CardHeader>
-                <CardTitle>Earthquake Magnitude by Location</CardTitle>
-                <CardDescription>
-                  Distribution of earthquake magnitudes across different
-                  locations
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="h-[500px]">
-                <ChartContainer config={chartConfig}>
-                  <BarChart
-                    data={filteredData}
-                    margin={{ top: 20, right: 30, left: 40, bottom: 100 }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                    <XAxis
-                      dataKey="Place"
-                      angle={-45}
-                      textAnchor="end"
-                      height={100}
-                      interval={0}
-                      tick={{ fontSize: 12 }}
-                    />
-                    <YAxis
-                      dataKey="Mag"
-                      label={{
-                        value: 'Magnitude',
-                        angle: -90,
-                        position: 'insideLeft',
-                        style: { textAnchor: 'middle' },
-                      }}
-                    />
-                    <ChartTooltip
-                      content={
-                        <ChartTooltipContent
-                          labelFormatter={(label) => `Location: ${label}`}
-                          formatter={(value) => [
-                            `Magnitude: ${Number(value).toFixed(1)}`,
-                          ]}
-                        />
-                      }
-                    />
-                    <Bar
-                      dataKey="Mag"
-                      fill="hsl(var(--chart-1))"
-                      radius={[4, 4, 0, 0]}
-                    />
-                  </BarChart>
-                </ChartContainer>
-              </CardContent>
-            </Card>
+            <GraphView data={filteredData} />
           </TabsContent>
           <TabsContent value="map">
-            <Card>
-              <CardHeader>
-                <CardTitle>Earthquake Locations</CardTitle>
-                <CardDescription>
-                  Geographical distribution of earthquakes
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="h-[500px]">
-                <div className="w-full h-full flex items-center justify-center bg-muted rounded-md">
-                  Map View Coming Soon
-                </div>
-              </CardContent>
-            </Card>
+            <MapView data={filteredData} />
           </TabsContent>
         </Tabs>
       )}
