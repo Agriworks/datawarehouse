@@ -1,5 +1,4 @@
 'use client'
-
 import * as React from 'react'
 import { useSession } from 'next-auth/react'
 import {
@@ -51,12 +50,6 @@ const data = {
   ],
   navMain: [
     {
-      title: 'Dashboard',
-      url: '/dashboard',
-      icon: SquareTerminal,
-      isActive: true,
-    },
-    {
       title: 'CSA Datastore',
       url: '#',
       icon: SquareTerminal,
@@ -103,7 +96,7 @@ const data = {
     },
     {
       title: 'Settings',
-      url: '#',
+      url: '/settings',
       icon: Settings2,
     },
   ],
