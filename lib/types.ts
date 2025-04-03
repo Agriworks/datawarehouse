@@ -6,3 +6,15 @@ export interface EarthquakeData {
   Latitude: number
   Longitude: number
 }
+
+export interface TableViewProps {
+  data: EarthquakeData[]
+}
+
+export interface GraphViewProps {
+  data: EarthquakeData[]
+}
+
+export interface MapViewProps {
+  data: EarthquakeData[]
+}
