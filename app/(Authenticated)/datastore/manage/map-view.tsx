@@ -7,11 +7,28 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { MapViewProps } from '@/lib/types'
-import { MapContainer, TileLayer, CircleMarker, Popup } from 'react-leaflet'
-import 'leaflet/dist/leaflet.css'
+import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
+import 'leaflet/dist/leaflet.css'
 
-// Helper function to get color based on magnitude
+// Dynamically import Leaflet components with no SSR
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+)
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+)
+const CircleMarker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.CircleMarker),
+  { ssr: false }
+)
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
+  ssr: false,
+})
+
+// Helper functions remain the same
 function getMagnitudeColor(magnitude: number): string {
   if (magnitude <= 2) return '#00ff00'
   if (magnitude <= 4) return '#ffff00'
@@ -19,7 +36,6 @@ function getMagnitudeColor(magnitude: number): string {
   return '#ff0000'
 }
 
-// Helper function to get radius based on magnitude
 function getMagnitudeRadius(magnitude: number): number {
   return Math.max(6, Math.min(magnitude * 3, 15))
 }
@@ -27,13 +43,26 @@ function getMagnitudeRadius(magnitude: number): number {
 export function MapView({ data }: MapViewProps) {
   const [mounted, setMounted] = useState(false)
 
-  // Handle hydration issues with Next.js
   useEffect(() => {
     setMounted(true)
+    // Import Leaflet CSS only on client side
+    void import('leaflet/dist/leaflet.css')
   }, [])
 
   if (!mounted) {
-    return null
+    return (
+      <Card className="h-full">
+        <CardHeader className="flex-none">
+          <CardTitle>Earthquake Locations</CardTitle>
+          <CardDescription>Loading map...</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-1 relative h-[500px] p-0">
+          <div className="absolute inset-0 flex items-center justify-center">
+            Loading map...
+          </div>
+        </CardContent>
+      </Card>
+    )
   }
 
   const center: [number, number] = [20, 0]
