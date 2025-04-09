@@ -81,8 +81,11 @@ export function MapView({ data }: MapViewProps) {
           <MapContainer
             center={center}
             zoom={2}
+            minZoom={2}
+            maxZoom={18}
             className="h-full w-full rounded-md"
             scrollWheelZoom={true}
+            zoomControl={true}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
