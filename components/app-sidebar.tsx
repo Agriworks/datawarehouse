@@ -1,6 +1,6 @@
 'use client'
-
 import * as React from 'react'
+import { useSession } from 'next-auth/react'
 import {
   AudioWaveform,
   BookOpen,
@@ -85,13 +85,18 @@ const data = {
       ],
     },
     {
+      title: 'User Management',
+      url: '/usermanagement',
+      icon: BookOpen,
+    },
+    {
       title: 'About Us',
       url: '/about',
       icon: BookOpen,
     },
     {
       title: 'Settings',
-      url: '#',
+      url: '/settings',
       icon: Settings2,
     },
   ],
@@ -115,13 +120,26 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { data: session } = useSession()
+  const isAdmin = session?.user?.role === 'Admin'
+
+  const filteredNavItems = React.useMemo(() => {
+    return data.navMain.filter((item) => {
+      // Hide Pipeline Management if user is not admin
+      if (item.title === 'Pipeline Management' && !isAdmin) {
+        return false
+      }
+      return true
+    })
+  }, [isAdmin])
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <h1 className="text-xl font-semibold text-center">CSA Datastore</h1>
       </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.navMain} />
+      <SidebarContent className="font-medium">
+        <NavMain items={filteredNavItems} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

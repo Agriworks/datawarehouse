@@ -1,9 +1,16 @@
 import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
-import type { NextAuthOptions } from 'next-auth'
+import type { NextAuthOptions, DefaultSession } from 'next-auth'
 import clientPromise from '@/lib/mongodb'
 
-// Create auth options without exporting
+declare module 'next-auth' {
+  interface Session {
+    user: {
+      role?: string | null
+    } & DefaultSession['user']
+  }
+}
+
 const options: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -15,7 +22,7 @@ const options: NextAuthOptions = {
     async signIn({ user }) {
       try {
         const client = await clientPromise
-        const db = client.db('datawarehouse')
+        const db = client.db('dataware_house')
         const dbUser = await db.collection('accounts').findOne({
           Email: user.email,
         })
@@ -29,11 +36,11 @@ const options: NextAuthOptions = {
       if (account && user?.email) {
         try {
           const client = await clientPromise
-          const db = client.db('datawarehouse')
+          const db = client.db('dataware_house')
           const dbUser = await db.collection('accounts').findOne({
             Email: user.email,
           })
-          token.role = dbUser?.CSA_Role || null
+          token.role = dbUser?.CSA_Role
           console.log('Role assigned:', token.role)
         } catch (error) {
           console.error('JWT error:', error)
@@ -53,7 +60,7 @@ const options: NextAuthOptions = {
   },
   pages: {
     signIn: '/landingpage',
-    error: '/landingpage',
+    error: '/auth/error',
   },
   secret: process.env.NEXTAUTH_SECRET,
 }

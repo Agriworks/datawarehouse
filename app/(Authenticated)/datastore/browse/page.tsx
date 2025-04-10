@@ -1,6 +1,26 @@
+'use client'
 import { Input } from '@/components/ui/input'
 import { Search } from 'lucide-react'
 import { DatasetCard } from './datasetcard'
+
+const sampleData = [
+  {
+    title: 'Agricultural Land Use Data 2023',
+    imageSrc: '/images/agriculture.jpg',
+  },
+  {
+    title: 'Climate Change Impact Study',
+    imageSrc: '/images/climate.jpg',
+  },
+  {
+    title: 'Urban Development Patterns',
+    imageSrc: '/images/urban.jpg',
+  },
+  {
+    title: 'Rainfall Distribution Analysis',
+    imageSrc: '/images/rainfall.jpg',
+  },
+]
 
 export default function Browse() {
   return (
@@ -14,23 +34,14 @@ export default function Browse() {
         />
       </div>
       <div className="flex-1 overflow-auto px-4">
-        <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-          <DatasetCard
-            title="By state"
-            imageSrc="/placeholder.svg?height=200&width=200"
-          />
-          <DatasetCard
-            title="By state"
-            imageSrc="/placeholder.svg?height=200&width=200"
-          />
-          <DatasetCard
-            title="By state"
-            imageSrc="/placeholder.svg?height=200&width=200"
-          />
-          <DatasetCard
-            title="By state"
-            imageSrc="/placeholder.svg?height=200&width=200"
-          />
+        <div className="grid gap-6 sm:grid-cols-1 lg:grid-cols-2">
+          {sampleData.map((dataset, index) => (
+            <DatasetCard
+              key={index}
+              title={dataset.title}
+              imageSrc={dataset.imageSrc}
+            />
+          ))}
         </div>
       </div>
     </div>

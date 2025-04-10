@@ -1,0 +1,202 @@
+[
+  {
+    "id": "1",
+    "title": "Agricultural Land Use Data 2023",
+    "imageSrc": "/images/agriculture.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["agriculture", "land-use", "farming"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "2",
+    "title": "Climate Change Impact Study",
+    "imageSrc": "/images/climate.jpg",
+    "type": "climate",
+    "permission": "private",
+    "tags": ["climate", "environment", "research"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "3",
+    "title": "Urban Development Patterns",
+    "imageSrc": "/images/urban.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["urban", "development", "planning"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "4",
+    "title": "Rainfall Distribution Analysis",
+    "imageSrc": "/images/rainfall.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["weather", "rainfall", "climate"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "5",
+    "title": "Soil Quality Measurements",
+    "imageSrc": "/images/soil.jpg",
+    "type": "land-use",
+    "permission": "private",
+    "tags": ["soil", "agriculture", "research"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "6",
+    "title": "Forest Cover Changes",
+    "imageSrc": "/images/forest.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["forest", "environment", "conservation"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "7",
+    "title": "Temperature Trends 2020-2023",
+    "imageSrc": "/images/temperature.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["temperature", "climate", "trends"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "8",
+    "title": "Crop Yield Statistics",
+    "imageSrc": "/images/crops.jpg",
+    "type": "land-use",
+    "permission": "private",
+    "tags": ["agriculture", "crops", "statistics"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "9",
+    "title": "Wind Pattern Analysis",
+    "imageSrc": "/images/wind.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["wind", "weather", "analysis"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "10",
+    "title": "Urban Green Spaces",
+    "imageSrc": "/images/green-spaces.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["urban", "environment", "planning"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "11",
+    "title": "Air Quality Measurements",
+    "imageSrc": "/images/air-quality.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["air", "pollution", "environment"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "12",
+    "title": "Residential Zone Mapping",
+    "imageSrc": "/images/residential.jpg",
+    "type": "land-use",
+    "permission": "private",
+    "tags": ["urban", "residential", "mapping"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "13",
+    "title": "Solar Radiation Data",
+    "imageSrc": "/images/solar.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["solar", "energy", "climate"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "14",
+    "title": "Industrial Zone Analysis",
+    "imageSrc": "/images/industrial.jpg",
+    "type": "land-use",
+    "permission": "private",
+    "tags": ["industrial", "urban", "development"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "15",
+    "title": "Humidity Patterns",
+    "imageSrc": "/images/humidity.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["humidity", "weather", "climate"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "16",
+    "title": "Water Bodies Mapping",
+    "imageSrc": "/images/water.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["water", "environment", "mapping"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "17",
+    "title": "Cloud Cover Analysis",
+    "imageSrc": "/images/clouds.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["clouds", "weather", "analysis"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "18",
+    "title": "Transportation Network",
+    "imageSrc": "/images/transport.jpg",
+    "type": "land-use",
+    "permission": "private",
+    "tags": ["transport", "urban", "infrastructure"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "19",
+    "title": "Seasonal Weather Patterns",
+    "imageSrc": "/images/seasons.jpg",
+    "type": "climate",
+    "permission": "public",
+    "tags": ["seasons", "weather", "patterns"],
+    "timeData": true,
+    "locationData": true
+  },
+  {
+    "id": "20",
+    "title": "Commercial Areas Study",
+    "imageSrc": "/images/commercial.jpg",
+    "type": "land-use",
+    "permission": "public",
+    "tags": ["commercial", "urban", "development"],
+    "timeData": true,
+    "locationData": true
+  }
+]
