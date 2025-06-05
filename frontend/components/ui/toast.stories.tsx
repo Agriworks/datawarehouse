@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { Button } from './button';
 import { Toast } from './toast';
 import { useToast } from '../../hooks/use-toast';

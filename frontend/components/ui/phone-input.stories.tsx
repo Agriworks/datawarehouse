@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { PhoneInput } from "./phone-input";
 import type { Value } from "react-phone-number-input"; // Import Value type
 
