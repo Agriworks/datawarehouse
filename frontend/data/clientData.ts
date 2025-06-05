@@ -1,0 +1,111 @@
+export const clientData: {
+  id: string;
+  name: string;
+  company_location: string;
+  company_address: string;
+  contact_number: string;
+  email: string[];
+  tax_number: string;
+  kyc_documents: string[];
+}[] = [
+  {
+    id: "1",
+    name: "Acme Corp",
+    company_location: "New York, NY",
+    company_address: "123 Main St, New York, NY 10001",
+    contact_number: "212-555-1212",
+    email: ["info@acmecorp.com", "ceo@acmecorp.com"],
+    tax_number: "12-3456789",
+    kyc_documents: ["Acme KYC Doc 1", "Acme KYC Doc 2"],
+  },
+  {
+    id: "2",
+    name: "Beta Industries",
+    company_location: "San Francisco, CA",
+    company_address: "456 Market St, San Francisco, CA 94105",
+    contact_number: "415-555-2323",
+    email: ["contact@betaindustries.com"],
+    tax_number: "98-7654321",
+    kyc_documents: ["Beta KYC Doc URL"],
+  },
+  {
+    id: "3",
+    name: "Gamma Solutions",
+    company_location: "London, UK",
+    company_address: "789 Oxford St, London, UK W1C 1BA",
+    contact_number: "+44 20 7123 4567",
+    email: ["sales@gammasolutions.com"],
+    tax_number: "GB123456789",
+    kyc_documents: ["Gamma KYC Doc URL"],
+  },
+  {
+    id: "4",
+    name: "Delta Innovations",
+    company_location: "Tokyo, Japan",
+    company_address: "10-1 Ginza, Chuo-ku, Tokyo 104-0061",
+    contact_number: "+81 3-1234-5678",
+    email: ["support@deltainnovations.com"],
+    tax_number: "JP1234567890",
+    kyc_documents: ["Delta KYC Doc URL"],
+  },
+  {
+    id: "5",
+    name: "Epsilon Enterprises",
+    company_location: "Sydney, Australia",
+    company_address: "111 George St, Sydney NSW 2000",
+    contact_number: "+61 2 9234 5678",
+    email: ["hello@epsilonenterprises.com"],
+    tax_number: "AU12345678901",
+    kyc_documents: ["Epsilon KYC Doc URL"],
+  },
+  {
+    id: "6",
+    name: "Zeta Solutions",
+    company_location: "Toronto, Canada",
+    company_address: "123 Yonge St, Toronto, ON M5C 1W1",
+    contact_number: "+1 416-555-1212",
+    email: ["info@zetasolutions.com"],
+    tax_number: "CA123456789",
+    kyc_documents: ["Zeta KYC Doc URL"],
+  },
+  {
+    id: "7",
+    name: "Eta Corporation",
+    company_location: "Berlin, Germany",
+    company_address: "123 Friedrichstrasse, Berlin 10117",
+    contact_number: "+49 30 1234 5678",
+    email: ["support@etacorporation.com"],
+    tax_number: "DE123456789",
+    kyc_documents: ["Eta KYC Doc URL"],
+  },
+  {
+    id: "8",
+    name: "Theta Ventures",
+    company_location: "São Paulo, Brazil",
+    company_address: "123 Avenida Paulista, São Paulo SP 01310-100",
+    contact_number: "+55 11 1234 5678",
+    email: ["hello@thetaventures.com"],
+    tax_number: "BR123456789",
+    kyc_documents: ["Theta KYC Doc URL"],
+  },
+  {
+    id: "9",
+    name: "Iota Innovations",
+    company_location: "Mumbai, India",
+    company_address: "123 Nariman Point, Mumbai 400021",
+    contact_number: "+91 22 1234 5678",
+    email: ["info@iotainnovations.com"],
+    tax_number: "IN123456789",
+    kyc_documents: ["Iota KYC Doc URL"],
+  },
+  {
+    id: "10",
+    name: "Kappa Enterprises",
+    company_location: "Paris, France",
+    company_address: "123 Champs-Élysées, Paris 75008",
+    contact_number: "+33 1 1234 5678",
+    email: ["support@kappaenterprises.com"],
+    tax_number: "FR123456789",
+    kyc_documents: ["Kappa KYC Doc URL"],
+  },
+];
